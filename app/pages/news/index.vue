@@ -16,18 +16,23 @@ const { $supabase } = useNuxtApp();
 //   getAllNews();
 // });
 
-const { data: news } = await useAsyncData("all-news", async () => {
+const {
+  data: news,
+  pending,
+  status,
+} = await useAsyncData("all-news", async () => {
   const { data, error } = await $supabase.from("news").select("*");
   return data;
 });
 </script>
+
 <template>
   <div class="text-center">
     <div class="text-6xl font-semibold tracking-tight">Berita Hari ini</div>
     <div>Selasa, 18 November 2025</div>
   </div>
   <div class="w-full max-w-[700px] mx-auto space-y-2 mt-10">
-    <div v-if="isLoading" class="text-xl bg-amber-600 text-white">
+    <div v-if="pending" class="text-xl bg-amber-600 text-white">
       Sedang loading...
     </div>
     <div v-for="newsItem in news">

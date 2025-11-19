@@ -2,21 +2,33 @@
 const { $supabase } = useNuxtApp();
 const route = useRoute();
 
-const news = ref({});
-async function getNews() {
-  const { data } = await $supabase
-    .from("news")
-    .select("*")
-    .eq("slug", route.params.news)
-    .single();
+// const news = ref({});
+// async function getNews() {
+//   const { data } = await $supabase
+//     .from("news")
+//     .select("*")
+//     .eq("slug", route.params.news)
+//     .single();
 
-  console.log(data);
-  news.value = data;
-}
+//   console.log(data);
+//   news.value = data;
+// }
 
-onMounted(() => {
-  getNews();
-});
+// onMounted(() => {
+//   getNews();
+// });
+
+const { data: news } = await useAsyncData(
+  `news-${route.params.news}`,
+  async () => {
+    const { data } = await $supabase
+      .from("news")
+      .select("*")
+      .eq("slug", route.params.news)
+      .single();
+    return data;
+  },
+);
 </script>
 
 <template>

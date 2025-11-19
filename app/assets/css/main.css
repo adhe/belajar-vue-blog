@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@theme {
+  --color-bkd-dark: #34495e;
+  --color-bkd-green: #009452;
+}

@@ -2,6 +2,7 @@
 import { Image } from "lucide-vue-next";
 const props = defineProps(["news"]);
 
+const { formatDate } = useDate();
 const newsSlug = computed(() => `/news/${props.news.slug}`);
 const date = new Date(props.news.created_at);
 </script>
@@ -15,9 +16,15 @@ const date = new Date(props.news.created_at);
         <Image v-else size="32" color="gray" />
       </div>
       <div class="flex-1">
-        <div class="text-sm font-medium">{{ date }}</div>
-        <div class="text-lg font-medium">{{ props.news.title }}</div>
-        <div class="text-sm">{{ props.news.content }}</div>
+        <div class="text-xs font-medium text-bkd-green">
+          {{ formatDate(date) }}
+        </div>
+        <div class="text-lg leading-tight text-bkd-dark font-medium mt-1">
+          {{ props.news.title }}
+        </div>
+        <div class="text-sm text-green-950/60">
+          {{ props.news.content }}
+        </div>
       </div>
     </div>
   </NuxtLink>

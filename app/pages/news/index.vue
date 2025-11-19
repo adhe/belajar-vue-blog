@@ -2,6 +2,7 @@
 import NewsItem from "@/components/NewsItem.vue";
 
 const { $supabase } = useNuxtApp();
+const { formatDate } = useDate();
 
 // const newsData = ref([]);
 // const isLoading = ref(false);
@@ -28,8 +29,10 @@ const {
 
 <template>
   <div class="text-center">
-    <div class="text-6xl font-semibold tracking-tight">Berita Hari ini</div>
-    <div>Selasa, 18 November 2025</div>
+    <div class="text-bkd-dark text-6xl font-semibold tracking-tight">
+      Berita Hari ini
+    </div>
+    <div class="text-bkd-green font-medium">{{ formatDate(new Date()) }}</div>
   </div>
   <div class="w-full max-w-[700px] mx-auto space-y-2 mt-10">
     <div v-if="pending" class="text-xl bg-amber-600 text-white">

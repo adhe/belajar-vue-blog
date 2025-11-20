@@ -2,12 +2,12 @@
 import NewsForm from "@/components/dashboard/NewsForm.vue";
 
 const { createNews } = useNews();
-const { title, content, status } = useNewsForm();
+// const { title, content, status } = useNewsForm();
 
-async function handleSubmit() {
+async function handleSubmit(newsFormData) {
   const { data, error } = await createNews({
-    title: title.value,
-    content: content.value,
+    title: newsFormData.title,
+    content: newsFormData.content,
   });
 
   if (!error) {
@@ -18,10 +18,5 @@ async function handleSubmit() {
 
 <template>
   <div>Create news</div>
-  <NewsForm
-    v-model:title="title"
-    v-model:content="content"
-    v-model:status="status"
-    @submit="handleSubmit"
-  />
+  <NewsForm :on-submit="handleSubmit" />
 </template>

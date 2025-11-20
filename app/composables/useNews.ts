@@ -1,8 +1,15 @@
 export const useNews = () => {
   const { $supabase } = useNuxtApp();
 
+  const deleteNews = async (id: number) => {
+    const { error } = await $supabase.from("news").delete().eq("id", id);
+    return {
+      error,
+    };
+  };
+
   const updateNews = async (
-    id: string,
+    id: number,
     updates: {
       title?: string;
       content?: string;
@@ -61,5 +68,6 @@ export const useNews = () => {
     createNews,
     getNews,
     updateNews,
+    deleteNews,
   };
 };

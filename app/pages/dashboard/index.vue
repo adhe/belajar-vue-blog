@@ -1,6 +1,10 @@
 <script setup>
 import NewsItem from "@/components/dashboard/NewsItem.vue";
 
+// definePageMeta({
+//   middleware: "auth",
+// });
+
 const { $supabase } = useNuxtApp();
 
 const { data: news } = await useAsyncData("all-news", async () => {

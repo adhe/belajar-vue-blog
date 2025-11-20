@@ -42,7 +42,7 @@ const { data: news } = await useAsyncData(
     </div>
     <div class="text-center leading-none text-sm mt-5">
       <div class="text-sm font-medium text-gray-400">Penulis</div>
-      <div class="text-bkd-green font-medium">Radhea Putra</div>
+      <div class="text-bkd-green font-medium">{{ news.author }}</div>
     </div>
     <div
       class="w-full max-w-[600px] bg-gray-200 h-72 mt-5 mx-auto rounded-lg overflow-hidden"
